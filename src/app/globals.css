@@ -1,11 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --text-primary: #171717;
-  --text-secondary: #4b5563;
-  --text-muted: #6b7280;
+  --background: #f0f4f8;
+  --foreground: #1a365d;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-gradient-from: #6366f1;
+  --primary-gradient-to: #4f46e5;
+  --card-background: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(255, 255, 255, 0.1);
 }
 
 @theme inline {
@@ -20,16 +26,64 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #e5e7eb;
-    --text-primary: #e5e7eb;
-    --text-secondary: #9ca3af;
-    --text-muted: #6b7280;
+    --background: #0f1729;
+    --foreground: #e2e8f0;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --primary: #6366f1;
+    --primary-hover: #818cf8;
+    --primary-gradient-from: #6366f1;
+    --primary-gradient-to: #4f46e5;
+    --card-background: rgba(30, 41, 59, 0.8);
+    --card-border: rgba(255, 255, 255, 0.05);
   }
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, var(--background) 0%, #1e1b4b 100%);
   color: var(--text-primary);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* 添加平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* 添加全局动画类 */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
