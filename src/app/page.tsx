@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { Todo, TodoTag } from './types';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
+import { useLanguage } from './i18n/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const handleAddTodo = (text: string, selectedTags: TodoTag[]) => {
@@ -36,7 +38,7 @@ export default function Home() {
         <div className="card bg-base-100 shadow-xl backdrop-blur-sm">
           <div className="card-body p-6 md:p-8">
             <h1 className="card-title text-3xl md:text-4xl font-bold justify-center mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              ✨ Todo List
+              {t('title')}
             </h1>
             <TodoInput onAdd={handleAddTodo} />
             <TodoList

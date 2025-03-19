@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { TodoTag, DEFAULT_TAGS } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface TodoInputProps {
   onAdd: (text: string, selectedTags: TodoTag[]) => void;
 }
 
 export function TodoInput({ onAdd }: TodoInputProps) {
+  const { t } = useLanguage();
   const [input, setInput] = useState('');
   const [selectedTags, setSelectedTags] = useState<TodoTag[]>([]);
 
@@ -25,14 +27,14 @@ export function TodoInput({ onAdd }: TodoInputProps) {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="What needs to be done?"
+          placeholder={t('placeholder')}
           className="input input-bordered join-item flex-1 focus:outline-none focus:border-primary"
         />
         <button 
           type="submit" 
           className="btn join-item bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-content border-0"
         >
-          Add Task
+          {t('addTodo')}
         </button>
       </div>
       <div className="flex flex-wrap gap-2">
@@ -57,7 +59,7 @@ export function TodoInput({ onAdd }: TodoInputProps) {
               className="badge badge-sm"
               style={{ backgroundColor: tag.color, color: '#fff' }}
             >
-              {tag.name}
+              {t(tag.name)}
             </span>
           </label>
         ))}

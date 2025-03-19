@@ -5,10 +5,10 @@ export type TodoTag = {
 };
 
 export const DEFAULT_TAGS: TodoTag[] = [
-  { id: 'work', name: '工作', color: '#0ea5e9' },
-  { id: 'study', name: '学习', color: '#8b5cf6' },
-  { id: 'life', name: '生活', color: '#22c55e' },
-  { id: 'other', name: '其他', color: '#94a3b8' }
+  { id: 'work', name: 'tag_work', color: '#0ea5e9' },
+  { id: 'study', name: 'tag_study', color: '#8b5cf6' },
+  { id: 'life', name: 'tag_life', color: '#22c55e' },
+  { id: 'other', name: 'tag_other', color: '#94a3b8' }
 ];
 
 export interface Todo {
