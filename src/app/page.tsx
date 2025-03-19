@@ -30,20 +30,22 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 py-12">
-      <main className="container mx-auto px-4 max-w-2xl">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h1 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            Todo List
-          </h1>
-          <TodoInput onAdd={handleAddTodo} />
-          <TodoList
-            todos={todos}
-            onToggle={handleToggleTodo}
-            onDelete={handleDeleteTodo}
-          />
+    <div className="min-h-screen p-4 md:p-8 flex items-center justify-center">
+      <div className="w-full max-w-2xl">
+        <div className="card bg-base-100 shadow-xl backdrop-blur-sm">
+          <div className="card-body p-6 md:p-8">
+            <h1 className="card-title text-3xl md:text-4xl font-bold justify-center mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              ✨ Todo List
+            </h1>
+            <TodoInput onAdd={handleAddTodo} />
+            <TodoList
+              todos={todos}
+              onToggle={handleToggleTodo}
+              onDelete={handleDeleteTodo}
+            />
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
