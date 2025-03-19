@@ -20,7 +20,7 @@ export function TodoInput({ onAdd }: TodoInputProps) {
   return (
     <form onSubmit={handleSubmit} >
       <div className="w-full">
-      <textarea value={input} rows={1} onChange={(e) => setInput(e.target.value)} placeholder={t('placeholder')} className="textarea resize-none"></textarea>
+      <textarea value={input} rows={1} onChange={(e) => setInput(e.target.value)} placeholder={t('placeholder')} className="textarea"></textarea>
       </div>
     </form>
   );
