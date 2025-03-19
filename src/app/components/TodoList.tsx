@@ -13,9 +13,11 @@ export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
   const { t } = useLanguage();
   if (todos.length === 0) {
     return (
-      <div className='toast toast-center toast-middle'>
-        <div className="alert alert-info">
-          <span>{t('emptyTodoList')}</span>
+      <div className="w-full flex justify-center items-center py-8 animate-fade-in">
+        <div className="card bg-base-200 shadow-lg w-full max-w-md">
+          <div className="card-body items-center text-center py-6">
+            <span className="text-base-content/70">{t('emptyTodoList')}</span>
+          </div>
         </div>
       </div>
     );
