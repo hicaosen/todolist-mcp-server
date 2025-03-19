@@ -53,10 +53,9 @@ export default function Home() {
   return (
     <div className="min-h-screen flex">
       <Sidebar currentFilter={currentFilter} onFilterChange={setCurrentFilter} />
-      <div className="flex-1 p-4 md:p-8 flex items-start justify-center">
+      <div className="flex-1 p-4 md:p-8 flex">
         <div className="w-full max-w-2xl">
-          <div className="card bg-base-100 shadow-xl backdrop-blur-sm">
-            <div className="card-body p-6 md:p-8">
+            <div className="p-6 md:p-8">
               <TodoInput onAdd={handleAddTodo} />
               <TodoList
                 todos={filteredTodos}
@@ -64,7 +63,6 @@ export default function Home() {
                 onDelete={handleDeleteTodo}
               />
             </div>
-          </div>
         </div>
       </div>
     </div>
