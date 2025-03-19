@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { GlobeAltIcon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon, SwatchIcon } from '@heroicons/react/24/outline';
 
 export default function NavBar() {
   const { setLanguage, t } = useLanguage();
@@ -11,7 +11,8 @@ export default function NavBar() {
     <nav className="navbar flex flex-row justify-end items-center gap-4 p-4 bg-base-200">
       <div className="dropdown dropdown-bottom dropdown-end">
         <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-base-300 active:bg-base-300/70 transition-all duration-200">
-          Theme
+          <SwatchIcon className="w-5 h-5" />
+          <span>{t('theme')}</span>
         </div>
         <ul tabIndex={0} className="dropdown-content rounded-box z-[1] w-36 p-2 shadow-2xl bg-base-100 mt-2">
           <li className="mb-1">
@@ -59,6 +60,7 @@ export default function NavBar() {
       <div className="dropdown dropdown-bottom dropdown-end">
         <div tabIndex={0} role='button' className="btn btn-ghost hover:bg-base-300 active:bg-base-300/70 transition-all duration-200">
           <GlobeAltIcon className="w-5 h-5" />
+          <span>{t('language')}</span>
         </div>
         <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-32 p-2 shadow-2xl mt-2">
           <li className="mb-1">
