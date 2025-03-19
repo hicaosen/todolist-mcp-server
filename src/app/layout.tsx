@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="fantasy">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-base-200`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden min-h-screen bg-base-200`}
       >
         <LanguageProvider>
           <NavBar />

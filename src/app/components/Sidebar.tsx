@@ -37,7 +37,7 @@ export function Sidebar({ currentFilter, onFilterChange }: SidebarProps) {
   ];
 
   return (
-    <div className="w-64 bg-base-100 min-h-screen p-4 shadow-lg">
+    <div className="w-64 min-h-screen p-4 shadow-lg">
       <ul className="menu menu-lg gap-2">
         {filters.map(filter => (
           <li key={filter.id}>
