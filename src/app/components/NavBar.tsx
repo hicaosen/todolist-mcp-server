@@ -13,11 +13,11 @@ export default function NavBar() {
         <span className="text-xl font-bold">{t('title')}</span>
       </div>
       <div className="flex-none">
-        <details className="dropdown dropdown-bottom dropdown-end">
-          <summary className="btn btn-circle btn-outline btn-primary">
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role='button' className="btn btn-ghost btn-circle">
             <GlobeAltIcon className="w-6 h-6" />
-          </summary>
-          <ul className="menu dropdown-content bg-base-100 z-[1] w-52 p-2 shadow">
+          </div >
+          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
             <li className="menu-title">
               <span>{t('language')}</span>
             </li>
@@ -38,7 +38,7 @@ export default function NavBar() {
               </button>
             </li>
           </ul>
-        </details>
+        </div>
       </div>
     </nav>
   );

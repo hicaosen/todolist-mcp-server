@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Todo, TodoTag } from './types';
+import { Todo } from './types';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
 import { Sidebar, FilterType } from './components/Sidebar';
@@ -10,12 +10,11 @@ export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [currentFilter, setCurrentFilter] = useState<FilterType>('today');
 
-  const handleAddTodo = (text: string, selectedTags: TodoTag[]) => {
+  const handleAddTodo = (text: string) => {
     const newTodo: Todo = {
       id: Date.now(),
       text,
-      completed: false,
-      tags: selectedTags
+      completed: false
     };
     setTodos(prev => [...prev, newTodo]);
   };
@@ -41,10 +40,6 @@ export default function Home() {
         const weekAgo = new Date();
         weekAgo.setDate(weekAgo.getDate() - 7);
         return todo.id >= weekAgo.getTime();
-      case 'work':
-        return todo.tags.some(tag => tag.id === 'work');
-      case 'personal':
-        return todo.tags.some(tag => tag.id !== 'work');
       default:
         return true;
     }

@@ -9,7 +9,7 @@ interface TodoItemProps {
 
 export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
   return (
-    <div className="card bg-base-200/50 hover:bg-base-200 transition-all duration-200 group animate-fade-in">
+    <div className="bg-base-200/50 hover:bg-base-200 transition-all duration-200 group animate-fade-in">
       <div className="card-body py-3 px-4 flex-row items-center gap-3">
         <label className="cursor-pointer">
           <input
@@ -29,21 +29,10 @@ export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
           >
             {todo.text}
           </span>
-          <div className="flex gap-2 mt-1">
-            {todo.tags.map(tag => (
-              <span
-                key={tag.id}
-                className="badge badge-sm"
-                style={{ backgroundColor: tag.color, color: '#fff' }}
-              >
-                {tag.name}
-              </span>
-            ))}
-          </div>
         </div>
         <button
           onClick={() => onDelete(todo.id)}
-          className="btn btn-ghost btn-xs btn-circle opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          className="btn btn-circle btn-active"
           aria-label="Delete todo"
         >
           <XMarkIcon className="h-4 w-4" />
