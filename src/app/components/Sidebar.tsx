@@ -1,7 +1,8 @@
 'use client';
 
 import { useLanguage } from '../i18n/LanguageContext';
-import { CalendarDaysIcon, ChartBarIcon, BriefcaseIcon, UserIcon } from '@heroicons/react/24/outline';
+import { CalendarDaysIcon, ChartBarIcon, BriefcaseIcon, UserIcon, ChevronDoubleLeftIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 
 export type FilterType = 'today' | 'week' | 'work' | 'personal';
 
@@ -12,6 +13,7 @@ interface SidebarProps {
 
 export function Sidebar({ onFilterChange }: SidebarProps) {
   const { t } = useLanguage();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const filters: { id: FilterType; name: string; icon: React.ReactNode }[] = [
     { 
@@ -37,9 +39,15 @@ export function Sidebar({ onFilterChange }: SidebarProps) {
   ];
 
   return (
-    <div className="min-w-64 min-h-screen p-6 border-r border-base-300 bg-base-200">
+    <div className={`${isCollapsed ? 'min-w-20' : 'min-w-64'} min-h-screen p-6 border-r border-base-300 bg-base-200 transition-all duration-300 relative`}>
+      <button
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="absolute -right-3 top-8 p-1.5 rounded-full bg-base-300 hover:bg-base-100 transition-colors duration-200 border border-base-300"
+      >
+        <ChevronDoubleLeftIcon className={`w-4 h-4 transition-transform duration-300 ${isCollapsed ? 'rotate-180' : ''}`} />
+      </button>
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-primary tracking-tight">{t('title')}</h1>
+        <h1 className={`text-3xl font-bold text-primary tracking-tight ${isCollapsed ? 'hidden' : ''}`}>{t('title')}</h1>
       </div>
       <nav>
         <ul className="space-y-1.5">
@@ -50,7 +58,7 @@ export function Sidebar({ onFilterChange }: SidebarProps) {
                 className="w-full flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-base-300 active:bg-base-300/70 transition-all duration-200 group"
               >
                 <span className="text-base-content/70 group-hover:text-primary transition-colors">{filter.icon}</span>
-                <span className="text-base font-medium group-hover:text-primary transition-colors">{filter.name}</span>
+                <span className={`text-base font-medium group-hover:text-primary transition-colors ${isCollapsed ? 'hidden' : ''}`}>{filter.name}</span>
               </button>
             </li>
           ))}
