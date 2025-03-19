@@ -37,20 +37,25 @@ export function Sidebar({ onFilterChange }: SidebarProps) {
   ];
 
   return (
-    <div className="min-w-64 min-h-screen justify-center items-center">
-      <div className="flex-none">
-        <span className="text-xl font-bold">{t('title')}</span>
+    <div className="min-w-64 min-h-screen p-6 border-r border-base-300 bg-base-200">
+      <div className="mb-10">
+        <h1 className="text-3xl font-bold text-primary tracking-tight">{t('title')}</h1>
       </div>
-      <div className="flex-none divider"></div>
-      <ul className="flex-1 menu w-full [&_li>*]:rounded-none">
-        {filters.map(filter => (
-          <li key={filter.id} onClick={() => onFilterChange(filter.id)}>
-             <a>
-              {filter.icon}{filter.name}
-              </a>
-          </li>
-        ))}
-      </ul>
+      <nav>
+        <ul className="space-y-1.5">
+          {filters.map(filter => (
+            <li key={filter.id}>
+              <button
+                onClick={() => onFilterChange(filter.id)}
+                className="w-full flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-base-300 active:bg-base-300/70 transition-all duration-200 group"
+              >
+                <span className="text-base-content/70 group-hover:text-primary transition-colors">{filter.icon}</span>
+                <span className="text-base font-medium group-hover:text-primary transition-colors">{filter.name}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }
