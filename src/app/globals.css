@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@layer utilities {
+    .textarea {
+        @apply w-full rounded-md shadow-md min-h-6;
+    }
+}
