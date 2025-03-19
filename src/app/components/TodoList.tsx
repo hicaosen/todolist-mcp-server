@@ -1,6 +1,7 @@
 
 import { Todo } from '../types';
 import { TodoItem } from './TodoItem';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface TodoListProps {
   todos: Todo[];
@@ -9,10 +10,11 @@ interface TodoListProps {
 }
 
 export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
+  const { t } = useLanguage();
   if (todos.length === 0) {
     return (
       <div className="alert alert-info">
-        <span>No todos yet. Add some tasks to get started!</span>
+        <span>{t('emptyTodoList')}</span>
       </div>
     );
   }

@@ -9,10 +9,15 @@ export const translations = {
     editTodo: "Edit",
     placeholder: "What needs to be done?",
     title: "✨ Todo List",
+    emptyTodoList: "No todos yet. Add some tasks to get started!",
     tag_work: "Work",
     tag_study: "Study",
     tag_life: "Life",
-    tag_other: "Other"
+    tag_other: "Other",
+    today: "Today",
+    week: "This Week",
+    work: "Work",
+    personal: "Personal"
   },
   zh: {
     settings: "设置",
@@ -24,10 +29,15 @@ export const translations = {
     editTodo: "编辑",
     placeholder: "需要做什么？",
     title: "✨ 待办清单",
+    emptyTodoList: "还没有待办事项。添加一些任务开始吧！",
     tag_work: "工作",
     tag_study: "学习",
     tag_life: "生活",
-    tag_other: "其他"
+    tag_other: "其他",
+    today: "今天",
+    week: "本周",
+    work: "工作",
+    personal: "个人"
   }
 };
 
