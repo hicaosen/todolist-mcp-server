@@ -53,16 +53,18 @@ export default function Home() {
   return (
     <div className="min-h-screen flex">
       <Sidebar currentFilter={currentFilter} onFilterChange={setCurrentFilter} />
-      <div className="flex-1 p-4 md:p-8 flex">
-        <div className="w-full max-w-2xl">
-            <div className="p-6 md:p-8">
-              <TodoInput onAdd={handleAddTodo} />
-              <TodoList
-                todos={filteredTodos}
-                onToggle={handleToggleTodo}
-                onDelete={handleDeleteTodo}
-              />
-            </div>
+      <div className="flex-1 p-4 md:p-8 flex flex-col">
+        <div className="w-full max-w-2xl flex-1 flex flex-col">
+          <div className="flex-1 overflow-y-auto">
+            <TodoList
+              todos={filteredTodos}
+              onToggle={handleToggleTodo}
+              onDelete={handleDeleteTodo}
+            />
+          </div>
+          <div className="sticky bottom-0 bg-base-100 pt-4">
+            <TodoInput onAdd={handleAddTodo} />
+          </div>
         </div>
       </div>
     </div>
