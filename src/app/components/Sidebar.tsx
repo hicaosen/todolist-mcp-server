@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '../i18n/LanguageContext';
+import { CalendarDaysIcon, ChartBarIcon, BriefcaseIcon, UserIcon } from '@heroicons/react/24/outline';
 
 export type FilterType = 'today' | 'week' | 'work' | 'personal';
 
@@ -12,26 +13,26 @@ interface SidebarProps {
 export function Sidebar({ currentFilter, onFilterChange }: SidebarProps) {
   const { t } = useLanguage();
 
-  const filters: { id: FilterType; name: string; icon: string }[] = [
+  const filters: { id: FilterType; name: string; icon: React.ReactNode }[] = [
     { 
       id: 'today',
       name: t('today'),
-      icon: '📅'
+      icon: <CalendarDaysIcon className="w-6 h-6" />
     },
     {
       id: 'week',
       name: t('week'),
-      icon: '📊'
+      icon: <ChartBarIcon className="w-6 h-6" />
     },
     {
       id: 'work',
       name: t('work'),
-      icon: '💼'
+      icon: <BriefcaseIcon className="w-6 h-6" />
     },
     {
       id: 'personal',
       name: t('personal'),
-      icon: '👤'
+      icon: <UserIcon className="w-6 h-6" />
     }
   ];
 

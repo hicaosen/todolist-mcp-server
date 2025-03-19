@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
 
 export default function NavBar() {
   const { language, setLanguage, t } = useLanguage();
@@ -17,7 +18,7 @@ export default function NavBar() {
           className="btn btn-ghost"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <img src="/globe.svg" alt="language" className="w-6 h-6" />
+          <GlobeAltIcon className="w-6 h-6" />
         </button>
         {isOpen && (
           <ul className="menu menu-compact dropdown-content absolute right-0 mt-2 p-2 shadow bg-base-100 rounded-box w-52">

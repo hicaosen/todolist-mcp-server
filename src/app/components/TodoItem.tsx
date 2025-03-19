@@ -1,4 +1,5 @@
 import { Todo } from '../types';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 interface TodoItemProps {
   todo: Todo;
@@ -45,20 +46,7 @@ export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
           className="btn btn-ghost btn-xs btn-circle opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           aria-label="Delete todo"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <XMarkIcon className="h-4 w-4" />
         </button>
       </div>
     </div>

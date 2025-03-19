@@ -20,7 +20,7 @@ export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3 w-full">
       {todos.map(todo => (
         <TodoItem
           key={todo.id}
