@@ -13,14 +13,16 @@ export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
   const { t } = useLanguage();
   if (todos.length === 0) {
     return (
-      <div className="alert alert-info">
-        <span>{t('emptyTodoList')}</span>
+      <div className='toast toast-center toast-middle'>
+        <div className="alert alert-info">
+          <span>{t('emptyTodoList')}</span>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-3 w-full">
+    <div className="w-full">
       {todos.map(todo => (
         <TodoItem
           key={todo.id}

@@ -10,7 +10,7 @@ interface SidebarProps {
   onFilterChange: (filter: FilterType) => void;
 }
 
-export function Sidebar({ currentFilter, onFilterChange }: SidebarProps) {
+export function Sidebar({ onFilterChange }: SidebarProps) {
   const { t } = useLanguage();
 
   const filters: { id: FilterType; name: string; icon: React.ReactNode }[] = [
@@ -37,17 +37,17 @@ export function Sidebar({ currentFilter, onFilterChange }: SidebarProps) {
   ];
 
   return (
-    <div className="w-64 min-h-screen p-4">
-      <ul className="menu menu-lg gap-2">
+    <div className="min-w-64 min-h-screen justify-center items-center">
+      <div className="flex-none">
+        <span className="text-xl font-bold">{t('title')}</span>
+      </div>
+      <div className="flex-none divider"></div>
+      <ul className="flex-1 menu w-full [&_li>*]:rounded-none">
         {filters.map(filter => (
-          <li key={filter.id}>
-            <button
-              className={`flex items-center gap-2 ${currentFilter === filter.id ? 'active' : ''}`}
-              onClick={() => onFilterChange(filter.id)}
-            >
-              <span>{filter.icon}</span>
-              <span>{filter.name}</span>
-            </button>
+          <li key={filter.id} onClick={() => onFilterChange(filter.id)}>
+             <a>
+              {filter.icon}{filter.name}
+              </a>
           </li>
         ))}
       </ul>
