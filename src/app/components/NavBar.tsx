@@ -28,24 +28,24 @@ export default function NavBar() {
               type="radio"
               name="theme-dropdown"
               className="theme-controller btn btn-ghost btn-block hover:bg-base-300"
-              aria-label="Retro"
-              value="retro" />
+              aria-label="Light"
+              value="light" />
           </li>
           <li className="mb-1">
             <input
               type="radio"
               name="theme-dropdown"
               className="theme-controller btn btn-ghost btn-block hover:bg-base-300"
-              aria-label="Cyberpunk"
-              value="cyberpunk" />
+              aria-label="Synthwave"
+              value="synthwave" />
           </li>
           <li className="mb-1">
             <input
               type="radio"
               name="theme-dropdown"
               className="theme-controller btn btn-ghost btn-block hover:bg-base-300"
-              aria-label="Valentine"
-              value="valentine" />
+              aria-label="Dracula"
+              value="dracula" />
           </li>
           <li>
             <input
