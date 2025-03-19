@@ -18,15 +18,28 @@ export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
             className="checkbox checkbox-primary checkbox-sm"
           />
         </label>
-        <span 
-          className={`flex-1 transition-all duration-200 ${
-            todo.completed 
-              ? 'line-through text-base-content/50' 
-              : 'text-base-content'
-          }`}
-        >
-          {todo.text}
-        </span>
+        <div className="flex-1">
+          <span 
+            className={`block transition-all duration-200 ${
+              todo.completed 
+                ? 'line-through text-base-content/50' 
+                : 'text-base-content'
+            }`}
+          >
+            {todo.text}
+          </span>
+          <div className="flex gap-2 mt-1">
+            {todo.tags.map(tag => (
+              <span
+                key={tag.id}
+                className="badge badge-sm"
+                style={{ backgroundColor: tag.color, color: '#fff' }}
+              >
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        </div>
         <button
           onClick={() => onDelete(todo.id)}
           className="btn btn-ghost btn-xs btn-circle opacity-0 group-hover:opacity-100 transition-opacity duration-200"

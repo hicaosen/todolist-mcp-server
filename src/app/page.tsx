@@ -1,18 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { Todo } from './types';
+import { Todo, TodoTag } from './types';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const handleAddTodo = (text: string) => {
+  const handleAddTodo = (text: string, selectedTags: TodoTag[]) => {
     const newTodo: Todo = {
       id: Date.now(),
       text,
-      completed: false
+      completed: false,
+      tags: selectedTags
     };
     setTodos(prev => [...prev, newTodo]);
   };
