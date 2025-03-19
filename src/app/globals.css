@@ -2,9 +2,3 @@
 @plugin "daisyui" {
     themes: all;
 }
-
-@layer utilities {
-    .textarea {
-        @apply w-full resize-none rounded-md shadow-md min-h-6;
-    }
-}
