@@ -9,7 +9,6 @@ RUN curl -fsSL https://code-server.dev/install.sh | sh \
   && code-server --install-extension eamodio.gitlens \
   && code-server --install-extension tencent-cloud.coding-copilot \
   && code-server --install-extension dsznajder.es7-react-js-snippets \
-  && code-server --install-extension visualstudioexptteam.vscodeintellicode \
   && code-server --install-extension christian-kohler.npm-intellisense \
   && code-server --install-extension christian-kohler.path-intellisense \
   && code-server --install-extension bradlc.vscode-tailwindcss \
