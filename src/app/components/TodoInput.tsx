@@ -20,7 +20,7 @@ export function TodoInput({ onAdd }: TodoInputProps) {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto p-4">
-      <div className="relative flex items-center gap-2 bg-base-200 rounded-lg p-2 focus-within:ring-2 focus-within:ring-primary transition-all duration-200">
+      <div className="relative flex items-center gap-2 bg-base-200 rounded-lg p-2 ring-2 ring-base-300 focus-within:ring-2 focus-within:ring-primary transition-all duration-200">
         <textarea
           value={input}
           rows={1}
