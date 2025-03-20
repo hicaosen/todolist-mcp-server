@@ -46,7 +46,7 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen flex">
+    <div className="h-screen flex  overflow-hidden">
       <Sidebar currentFilter={currentFilter} onFilterChange={setCurrentFilter} />
       <div className="flex-1 flex flex-col">
         <NavBar />
