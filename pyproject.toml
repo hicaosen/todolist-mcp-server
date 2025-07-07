@@ -1,5 +1,5 @@
 [project]
-name = "todolist"
+name = "todolist-mcp-server"
 version = "0.1.0"
 description = "TodoList MCP Server - A Model Context Protocol server for managing todo lists"
 authors = [
@@ -11,6 +11,12 @@ dependencies = [
     "mcp[cli] (>=1.10.1,<2.0.0)"
 ]
 
+[tool.poetry]
+packages = [
+    {include = "server.py", from = "src"},
+    {include = "__init__.py", from = "src"},
+]
+
 [project.optional-dependencies]
 dev = [
     "ruff>=0.1.0",
@@ -18,7 +24,7 @@ dev = [
 ]
 
 [project.scripts]
-todolist-mcp-server = "todolist.server:main"
+todolist-mcp-server = "server:main"
 
 # 开发工具脚本
 [project.entry-points."todolist.dev"]
@@ -75,5 +81,5 @@ ignore = [
 
 [tool.ruff.lint.isort]
 # import 排序配置
-known-first-party = ["todolist"]
+known-first-party = ["todolist_mcp_server"]
 force-single-line = false
