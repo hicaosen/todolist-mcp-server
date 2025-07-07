@@ -17,6 +17,10 @@ packages = [
     {include = "__init__.py", from = "src"},
 ]
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.12.2"
+pyright = "^1.1.402"
+
 [project.optional-dependencies]
 dev = [
     "ruff>=0.1.0",
@@ -24,7 +28,7 @@ dev = [
 ]
 
 [project.scripts]
-todolist-mcp-server = "server:main"
+todolist-mcp-server = "src.server:main"
 
 # 开发工具脚本
 [project.entry-points."todolist.dev"]

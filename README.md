@@ -6,8 +6,9 @@ A Model Context Protocol (MCP) server for managing todo lists with stdio communi
 
 - **TodoRead**: Read all todos from the todo list (no parameters required)
 - **TodoWrite**: Write/update todos to the todo list
-- **Persistent Storage**: Data stored in `~/.todolist.json`
+- **In-Memory Storage**: Data stored in memory with auto-clear feature
 - **Task Management**: Support for priorities and status tracking
+- **Auto-Clear Feature**: Automatically clears completed tasks when all todos are done
 - **Stdio Communication**: Compatible with MCP clients via stdio
 
 ## Installation
@@ -82,7 +83,7 @@ Each todo item must contain:
 ### Example Todo Item
 ```json
 {
-  "content": "完成MCP服务器开发",
+  "content": "Complete MCP server development",
   "id": "1",
   "priority": "high",
   "status": "completed"
@@ -97,7 +98,12 @@ Each todo item must contain:
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# Install dependencies
+# Install dependencies (using poetry or pip)
+# Poetry method:
+pip install poetry
+poetry install
+
+# Or use pip directly:
 pip install -e .
 ```
 
@@ -111,4 +117,4 @@ todolist-mcp-server
 
 ## Data Storage
 
-Todo items are stored in `~/.todolist.json` in your home directory. The file is automatically created when you first use the TodoWrite tool.
+Todo items are stored in memory during the MCP server session. When all tasks are marked as completed, the todo list is automatically cleared. This design ensures a clean workspace for new task cycles.
