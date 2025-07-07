@@ -28,7 +28,7 @@ dev = [
 ]
 
 [project.scripts]
-todolist-mcp-server = "src.server:main"
+todolist-mcp-server = "server:main"
 
 # 开发工具脚本
 [project.entry-points."todolist.dev"]
