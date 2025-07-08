@@ -3,7 +3,7 @@ name = "todolist-mcp-server"
 version = "0.1.0"
 description = "TodoList MCP Server - A Model Context Protocol server for managing todo lists"
 authors = [
-    {name = "hicaosen",email = "cFNb7m3IrZzBeuBbzRlo6G+hicaosen@noreply.cnb.cool"}
+    {name = "GeeseDream",email = "GeeseDream@aliyun.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.12"
@@ -37,15 +37,14 @@ format = "ruff:format"
 typecheck = "pyright:main"
 
 [project.urls]
-Homepage = "https://github.com/hicaosen/todolist"
-Repository = "https://github.com/hicaosen/todolist"
+Homepage = "https://cnb.cool/hicaosen/todolist"
+Repository = "https://cnb.cool/hicaosen/todolist.git"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
-# 目标 Python 版本
 target-version = "py312"
 
 # 源代码目录
