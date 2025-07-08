@@ -39,6 +39,23 @@ todolist-mcp-server
 python -m src.server
 ```
 
+### MCP Client Configuration
+
+To use this server with an MCP client, add the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "todolist": {
+      "command": "uvx",
+      "args": [
+        "todolist-mcp-server"
+      ]
+    }
+  }
+}
+```
+
 ### MCP Tools
 
 The server provides two main tools:
