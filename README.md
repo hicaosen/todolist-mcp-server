@@ -1,120 +1,134 @@
 # TodoList MCP Server
 
-A Model Context Protocol (MCP) server for managing todo lists with stdio communication.
+A Model Context Protocol (MCP) server for managing todo lists with intelligent task tracking and auto-clear functionality.
 
 ## Features
 
-- **TodoRead**: Read all todos from the todo list (no parameters required)
-- **TodoWrite**: Write/update todos to the todo list
-- **In-Memory Storage**: Data stored in memory with auto-clear feature
-- **Task Management**: Support for priorities and status tracking
-- **Auto-Clear Feature**: Automatically clears completed tasks when all todos are done
-- **Stdio Communication**: Compatible with MCP clients via stdio
+- **In-memory todo storage** with session-based persistence
+- **Intelligent auto-clear** - automatically clears completed tasks
+- **Task validation** with duplicate ID prevention
+- **Priority levels** (high, medium, low) and status tracking
+- **MCP-compliant** tools for seamless integration
 
 ## Installation
 
-### From Source
-```bash
-git clone <repository-url>
-cd todolist
-pip install -e .
-```
+### Requirements
+- Python 3.12+
+- Poetry (recommended) or pip
 
-### Via uvx (Recommended)
+### Setup
 ```bash
-uvx todolist-mcp-server
+# Clone the repository
+git clone https://github.com/hicaosen/todolist.git
+cd todolist
+
+# Install dependencies
+poetry install
+# or with pip
+pip install -e .
 ```
 
 ## Usage
 
-### As MCP Server
+### Running the Server
 ```bash
+# Using the installed script
 todolist-mcp-server
+
+# Or directly with Python
+python -m src.server
 ```
 
-### With Claude Desktop
-Add to your Claude Desktop MCP configuration:
+### MCP Tools
 
-**If installed locally:**
-```json
-{
-  "mcpServers": {
-    "todolist": {
-      "command": "todolist-mcp-server",
-      "args": []
+The server provides two main tools:
+
+#### `todo_read`
+Returns the current todo list. Use frequently to track progress.
+
+```python
+# No parameters required
+todos = todo_read()
+```
+
+#### `todo_write`
+Creates and manages todo items. Use for complex multi-step tasks.
+
+```python
+todos = [
+    {
+        "id": "task-1",
+        "content": "Implement user authentication",
+        "priority": "high",
+        "status": "pending"
+    },
+    {
+        "id": "task-2", 
+        "content": "Write unit tests",
+        "priority": "medium",
+        "status": "in_progress"
     }
-  }
-}
+]
+todo_write(todos)
 ```
 
-**If using uvx (recommended):**
-```json
-{
-  "mcpServers": {
-    "todolist": {
-      "command": "uvx",
-      "args": ["todolist-mcp-server"]
-    }
-  }
-}
-```
-
-## Tools
-
-### TodoRead
-- **Description**: Read all todos from the todo list
-- **Parameters**: None (leave empty)
-- **Returns**: List of todo items with their status, priority, and content
-
-### TodoWrite
-- **Description**: Write/update todos to the todo list
-- **Parameters**: 
-  - `todos`: Array of todo items
-- **Returns**: Success message
-
-## Todo Item Structure
+### Todo Item Structure
 
 Each todo item must contain:
-- `content`: Task description (string)
-- `id`: Unique task identifier (string)
-- `priority`: Priority level ("high", "medium", "low")
-- `status`: Task status ("pending", "in_progress", "completed")
+- `id`: Unique string identifier
+- `content`: Task description (non-empty string)
+- `priority`: One of "high", "medium", "low"
+- `status`: One of "pending", "in_progress", "completed"
 
-### Example Todo Item
-```json
-{
-  "content": "Complete MCP server development",
-  "id": "1",
-  "priority": "high",
-  "status": "completed"
-}
-```
+### Auto-Clear Behavior
+
+When all todos reach "completed" status, the list automatically clears to maintain a clean workspace.
 
 ## Development
 
-### Setup
+### Code Quality Tools
 ```bash
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+# Lint code
+ruff check
 
-# Install dependencies (using poetry or pip)
-# Poetry method:
-pip install poetry
-poetry install
+# Format code
+ruff format
 
-# Or use pip directly:
-pip install -e .
+# Type checking
+pyright
 ```
 
-### Testing
-```bash
-# Run the server
-todolist-mcp-server
-
-# Test with MCP client or Claude Desktop
+### Project Structure
+```
+todolist/
+├── src/
+│   ├── __init__.py
+│   └── server.py          # Main MCP server implementation
+├── pyproject.toml         # Project configuration
+├── poetry.lock           # Dependency lock file
+└── README.md
 ```
 
-## Data Storage
+## Configuration
 
-Todo items are stored in memory during the MCP server session. When all tasks are marked as completed, the todo list is automatically cleared. This design ensures a clean workspace for new task cycles.
+The server uses the following configuration:
+- **Line length**: 88 characters
+- **Python version**: 3.12+
+- **Code style**: Ruff with comprehensive rule set
+- **Type checking**: Pyright with strict mode
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
+
+## Support
+
+For issues and questions, please use the GitHub issue tracker.
