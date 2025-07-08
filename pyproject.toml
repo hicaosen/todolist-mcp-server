@@ -1,6 +1,6 @@
 [project]
 name = "todolist-mcp-server"
-version = "0.1.0"
+version = "0.1.1"
 description = "TodoList MCP Server - A Model Context Protocol server for managing todo lists"
 authors = [
     {name = "GeeseDream",email = "GeeseDream@aliyun.com"}
