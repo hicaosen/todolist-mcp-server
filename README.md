@@ -1,22 +1,94 @@
-# TodoList MCP Server
+# TodoList MCP Server for AI Agents
 
-A Model Context Protocol (MCP) server for managing todo lists with intelligent task tracking and auto-clear functionality.
+This project provides a Model Context Protocol (MCP) server designed to function as a robust, external "working memory" or "task manager" for Large Language Models (LLMs) and AI Agents. It is not intended for direct human use but rather as a critical backend tool that enables AI to reliably execute complex, multi-step tasks.
 
-## Features
+## The Core Problem for AI
 
-- **In-memory todo storage** with session-based persistence
-- **Intelligent auto-clear** - automatically clears completed tasks
-- **Task validation** with duplicate ID prevention
-- **Priority levels** (high, medium, low) and status tracking
-- **MCP-compliant** tools for seamless integration
+LLMs operate within a limited "context window." For complex tasks requiring numerous steps, they can "forget" the initial plan, lose track of their progress, or fail to manage state effectively. This tool directly addresses that limitation.
 
-## Installation
+## Core Value for AI Agents
+
+By integrating this `todolist` server, an AI agent gains:
+
+- **Reliable State Management**: It transforms a vague, conversational plan into a structured, machine-readable state machine. The AI is forced to track task status (`pending`, `in_progress`, `completed`), ensuring no steps are missed.
+- **Persistent "Working Memory"**: The todo list acts as an external, reliable memory store. The AI can offload its plan and progress, query it at any time with `todo_read`, and stay on track without being constrained by its context window.
+- **Enhanced Execution Reliability**: It encourages a systematic `read-modify-write` workflow, compelling the AI to consciously assess its current state before proceeding. This dramatically reduces errors and deviations from the plan.
+- **Transparent & Auditable Workflow**: The todo list provides a clear, real-time log of the AI's actions. This transparency is invaluable for debugging, monitoring, and building trust in the agent's execution capabilities.
+- **Intelligent Auto-Clear**: Once all tasks are marked `completed`, the list automatically resets. This signals the successful completion of the overall task and prepares the workspace for a new one, creating a clean, satisfying task loop.
+
+## How AI Agents Use This Tool
+
+An AI agent interacts with the server following a simple yet powerful loop:
+
+1.  **Plan & Initialize**: First, the agent breaks down a complex user request into a series of actionable steps and uses `todo_write` to populate the list, setting all tasks to `pending`.
+2.  **Read (Assess State)**: Before taking action, the agent calls `todo_read` to get the current, complete state of all tasks.
+3.  **Modify (Update State)**: The agent identifies the next task, marks it as `in_progress`, performs the action, and then marks it as `completed`. This entire state update is prepared locally.
+4.  **Write (Commit State)**: The agent calls `todo_write` with the *entire updated list*, atomically committing the new state to the server.
+
+This `read-modify-write` cycle ensures that every action is deliberate and based on the most current state of the world.
+
+---
+
+## Technical Details
+
+### Features
+
+- **In-memory todo storage** with session-based persistence.
+- **Intelligent auto-clear** functionality.
+- **Task validation** with duplicate ID prevention.
+- **Priority levels** (`high`, `medium`, `low`) and status tracking.
+- **MCP-compliant** tools for seamless integration.
+
+### MCP Tools Provided
+
+#### `todo_read`
+Returns the current todo list. The AI should use this frequently to track progress and decide on the next action.
+
+```python
+# No parameters required
+# Returns a list of todo items
+todos = todo_read()
+```
+
+#### `todo_write`
+Creates or overwrites the entire todo list. This is the primary mechanism for an AI to update task status.
+
+```python
+# Expects a list of todo items
+todos = [
+    {
+        "id": "task-1",
+        "content": "Implement user authentication",
+        "priority": "high",
+        "status": "in_progress"
+    },
+    {
+        "id": "task-2", 
+        "content": "Write unit tests for authentication",
+        "priority": "medium",
+        "status": "pending"
+    }
+]
+todo_write(todos)
+```
+
+### Todo Item Structure
+
+Each todo item is a dictionary that **must** contain:
+- `id`: A unique string identifier for the task.
+- `content`: A non-empty string describing the task.
+- `priority`: One of `"high"`, `"medium"`, or `"low"`.
+- `status`: One of `"pending"`, `"in_progress"`, or `"completed"`.
+
+---
+
+## Setup and Configuration
 
 ### Requirements
 - Python 3.12+
 - Poetry (recommended) or pip
 
-### Setup
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/hicaosen/todolist.git
@@ -28,8 +100,6 @@ poetry install
 pip install -e .
 ```
 
-## Usage
-
 ### Running the Server
 ```bash
 # Using the installed script
@@ -39,9 +109,9 @@ todolist-mcp-server
 python -m src.server
 ```
 
-### MCP Client Configuration
+### MCP Client Configuration for AI
 
-To use this server with an MCP client, add the following configuration:
+To connect this server to your MCP-enabled AI client, add the following to your configuration:
 
 ```json
 {
@@ -55,51 +125,6 @@ To use this server with an MCP client, add the following configuration:
   }
 }
 ```
-
-### MCP Tools
-
-The server provides two main tools:
-
-#### `todo_read`
-Returns the current todo list. Use frequently to track progress.
-
-```python
-# No parameters required
-todos = todo_read()
-```
-
-#### `todo_write`
-Creates and manages todo items. Use for complex multi-step tasks.
-
-```python
-todos = [
-    {
-        "id": "task-1",
-        "content": "Implement user authentication",
-        "priority": "high",
-        "status": "pending"
-    },
-    {
-        "id": "task-2", 
-        "content": "Write unit tests",
-        "priority": "medium",
-        "status": "in_progress"
-    }
-]
-todo_write(todos)
-```
-
-### Todo Item Structure
-
-Each todo item must contain:
-- `id`: Unique string identifier
-- `content`: Task description (non-empty string)
-- `priority`: One of "high", "medium", "low"
-- `status`: One of "pending", "in_progress", "completed"
-
-### Auto-Clear Behavior
-
-When all todos reach "completed" status, the list automatically clears to maintain a clean workspace.
 
 ## Development
 
@@ -115,37 +140,6 @@ ruff format
 pyright
 ```
 
-### Project Structure
-```
-todolist/
-├── src/
-│   ├── __init__.py
-│   └── server.py          # Main MCP server implementation
-├── pyproject.toml         # Project configuration
-├── poetry.lock           # Dependency lock file
-└── README.md
-```
-
-## Configuration
-
-The server uses the following configuration:
-- **Line length**: 88 characters
-- **Python version**: 3.12+
-- **Code style**: Ruff with comprehensive rule set
-- **Type checking**: Pyright with strict mode
-
 ## License
 
 This project is licensed under the MIT License.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
-
-## Support
-
-For issues and questions, please use the GitHub issue tracker.
